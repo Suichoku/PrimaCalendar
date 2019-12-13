@@ -1,0 +1,17 @@
+.Row {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: 10vh;
+    border-bottom: 3px solid black;
+    box-sizing: border-box;
+    background: white;
+}
+
+.Name {  
+    color: black;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8em;
+}

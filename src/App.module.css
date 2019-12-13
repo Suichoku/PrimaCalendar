@@ -1,0 +1,34 @@
+body {
+    background-color: #eee;
+}
+
+.Nav {
+    margin: 30px auto 0px auto;
+    width: 50%;
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+    gap: 5px;
+}
+
+.Button {
+    background-color: #ddd;
+    border: 1px solid black;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 16px;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+}
+
+.Button:hover {
+    background-color: #fff;
+}
+
+.Search {
+    padding: 15px 32px;
+    font-size: 1.2em;
+    text-align: center;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+}

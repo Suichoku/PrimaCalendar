@@ -1,0 +1,49 @@
+.Day {
+    color: #333;
+    border-bottom: 3px solid black;
+    box-sizing: border-box;
+    font-size: 1.8em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Day:hover {
+    color: #fff;
+}
+
+.Empty {
+    opacity: 0;
+}
+
+.None {
+    background-color: #eee;
+}
+
+.None:hover {
+    background-color: #ccc;
+}
+
+.Low {   
+    background-color: #3cc962;
+}
+
+.Low:hover {
+    background-color: #32a852;
+}
+
+.Medium {
+    background-color: #ebb332;
+}
+
+.Medium:hover {
+    background-color: #d6a124;
+}
+
+.High {
+    background-color: #e93b2b;
+}
+
+.High:hover {
+    background-color: #c42d1f;
+}
