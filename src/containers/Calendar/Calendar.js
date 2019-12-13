@@ -17,6 +17,8 @@ const Calendar = props => {
     const daysInMonth = m.daysInMonth()
     const days = Array(daysInMonth).fill().map( (_, i) => i + 1)
 
+    console.log(m.month(), props.failureData)
+
     return (
         <div className={classes.Container}>
             <DayNames />
@@ -26,8 +28,11 @@ const Calendar = props => {
                      color={"Empty"}></Day>
             ))}
             {days.map( num => (
-                <Day key={num}
-                     color={"None"}>{num}</Day>
+                <Day 
+                    key={num}
+                    color={"None"}>
+                    {props.failureData ? props.failureData[num-1].Amount : 0}
+                </Day>
             ))}
             </div>
         </div>
