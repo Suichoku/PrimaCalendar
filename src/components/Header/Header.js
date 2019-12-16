@@ -3,7 +3,7 @@ import classes from './Header.module.css'
 
 const Header = props => {
     return (
-        <nav className={classes.Nav}>
+        <header className={classes.Container}>
           <button
             className={classes.Button}
             id="Prev"
@@ -20,7 +20,7 @@ const Header = props => {
             id="Next"
             onClick={props.changedMonth.bind(this)} >
             &#10095;</button>
-        </nav>
+        </header>
     )
 }
 

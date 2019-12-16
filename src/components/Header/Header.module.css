@@ -1,4 +1,4 @@
-.Nav {
+.Container {
     background-color: #34b0bf;
     box-sizing: border-box;
     padding: 20px 20px;
@@ -30,8 +30,8 @@
 
 .Search {
     background-color: transparent;
-    color: white;
-    font-size: 2.0em;
+    color: whitesmoke;
+    font-size: 2.5em;
     text-align: center;
     border: none;
 }
