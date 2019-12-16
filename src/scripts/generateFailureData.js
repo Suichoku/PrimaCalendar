@@ -11,7 +11,7 @@ for (var m = moment(start); m.diff(end, 'days') <= 0; m.add(1, 'days')) {
     // create day object containing the information
     const dayObj = {
         Date: m.format('DD.MM.YYYY'),
-        Amount: Math.floor(Math.random() * 201)
+        Amount: Math.floor(Math.random() * 200) + 1
     };
     // push day object to array of data
     data.push(dayObj);
