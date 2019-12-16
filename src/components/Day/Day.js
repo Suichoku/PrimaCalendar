@@ -1,5 +1,6 @@
 import React from 'react'
 import classes from './Day.module.css'
+import moment from 'moment';
 
 const Day = props => {
 
@@ -23,11 +24,12 @@ const Day = props => {
         classNames.push(classes[props.color])
     }
 
-    
+    const day = props.day ? moment(`${props.day}`, "D").format("Do") : null;
 
     return (
         <div className={classNames.join(" ")}>
-            {props.children}
+            <div className={classes.DayNumber}>{day}</div>
+            <div>{props.children}</div>
         </div>
     )
 }
