@@ -5,7 +5,7 @@ const DAYS = ["Ma", "Ti", "Ke", "To", "Pe", "La", "Su"];
 
 const DayNames = props => {
     return (
-        <div className={classes.Row}>
+        <div className={classes.Container}>
             {DAYS.map( day => (
                 <div className={classes.Name} key={day}>
                     {day}

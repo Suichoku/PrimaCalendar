@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import Calendar from './containers/Calendar/Calendar';
 import classes from './App.module.css'
+import DayNames from './components/DayNames/DayNames';
+
+import moment from 'moment'
+import Header from './components/Header/Header';
 
 class App extends Component {
 
   state = {
-    month: 12,
+    month: 5,
     year: 2019,
     failureData: null,
     monthFailureData: null
@@ -21,7 +25,6 @@ class App extends Component {
   }
 
   filterByMonth = data => {
-    console.log("called", this.state.month)
     return data.filter(obj => {
       let month = obj["Date"].split(".")[1]
       let year = obj["Date"].split(".")[2]
@@ -32,51 +35,50 @@ class App extends Component {
     })
   }
 
+  // Handles changing data on month change
   handleMonthChange = event => {
-    if(event.target.id === "Prev") {
-      this.setState(prev => {
-        if(prev.month > 1) return {month: prev.month - 1}
-        else return {month: 12, year: prev.year - 1}
-      }, () => {
-        this.setState( {monthFailureData: this.filterByMonth(this.state.failureData)} );
-      })
+    let { month, year } = this.state;
+
+    if(event.target.id === "Prev") { // Going to previous month
+      if(month > 1) --month;
+      else { // Months loop over to another year
+        month = 12; // set month to december
+        --year;
+      }
     }
-    if(event.target.id === "Next") {
-      this.setState(prev => {
-        if(prev.month < 12) return {month: prev.month + 1}
-        else return {month: 1, year: prev.year + 1}
-      }, () => {
-        this.setState( {monthFailureData: this.filterByMonth(this.state.failureData)} );
-      })
+    if(event.target.id === "Next") { // Going to next month
+      if(month < 12) ++month;
+      else { // Months loop over to another year
+        month = 1; // set month to january
+        ++year;
+      }
     }
+    
+
+    this.setState({month, year}, () => this.updateMonthData());
+  }
+
+  updateMonthData = () => {
+    const monthFailureData = this.filterByMonth(this.state.failureData);
+    this.setState({monthFailureData})
   }
 
   render() {
+
+    const monthName = moment().month(this.state.month-1).format("MMMM");
+
     return(
-      <React.Fragment>
-        <nav className={classes.Nav}>
-          <button
-            className={classes.Button}
-            id="Prev"
-            onClick={this.handleMonthChange.bind("Prev")} >
-            Prev</button>
-          <input 
-            type="text" 
-            className={classes.Search}
-            readOnly
-            value={`${this.state.month}/${this.state.year}`}
-          ></input>
-          <button
-            className={classes.Button}
-            id="Next"
-            onClick={this.handleMonthChange.bind("Next")} >
-            Next</button>
-        </nav>
+      <div className={classes.Container}>
+        <Header 
+          monthName={monthName}
+          year={this.state.year} 
+          changedMonth={this.handleMonthChange} />
+        <DayNames/>
         <Calendar
           year={this.state.year}
           month={this.state.month}
           failureData={this.state.monthFailureData} />
-      </React.Fragment>
+      </div>
     )
   }
 }

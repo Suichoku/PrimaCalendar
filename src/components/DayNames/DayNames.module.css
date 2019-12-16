@@ -1,13 +1,11 @@
-.Row {
+.Container {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: 10vh;
-    border-bottom: 3px solid black;
-    box-sizing: border-box;
+    border-bottom: 2px solid black;
     background: white;
 }
 
-.Name {  
+.Name {
     color: black;
     text-align: center;
     display: flex;

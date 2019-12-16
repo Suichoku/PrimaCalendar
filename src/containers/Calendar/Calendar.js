@@ -1,11 +1,12 @@
 import React from 'react'
 import classes from './Calendar.module.css'
-import DayNames from '../../components/DayNames/DayNames'
 import Day from '../../components/Day/Day'
 
 import moment from 'moment'
 
 const Calendar = props => {
+
+    console.log(props.failureData);
 
     // set moment date to currently selected month
     const m = moment(`${props.year}-${props.month}`, "YYYY-MM")
@@ -17,11 +18,15 @@ const Calendar = props => {
     const daysInMonth = m.daysInMonth()
     const days = Array(daysInMonth).fill().map( (_, i) => i + 1)
 
-    console.log(m.month(), props.failureData)
+    const dataLength = props.failureData && props.failureData.length;
+
+    const data = days.length === dataLength ?
+        props.failureData :
+        null;
+    // props.failureData[num-1].Amount
 
     return (
         <div className={classes.Container}>
-            <DayNames />
             <div className={classes.Grid}>
             {fillerDays.map( num => (
                 <Day key={"filler" + num}
@@ -31,7 +36,7 @@ const Calendar = props => {
                 <Day 
                     key={num}
                     color={"None"}>
-                    {props.failureData ? props.failureData[num-1].Amount : 0}
+                    {data ? data[num-1].Amount : num}
                 </Day>
             ))}
             </div>
