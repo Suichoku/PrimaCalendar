@@ -1,7 +1,7 @@
 .Container {
     background-color: #34b0bf;
     box-sizing: border-box;
-    padding: 20px 20px;
+    padding: 0px 0px;
     z-index: 2;
     padding: auto;
     display: grid;
