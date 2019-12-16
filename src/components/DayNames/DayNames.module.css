@@ -1,12 +1,13 @@
 .Container {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    border-bottom: 2px solid black;
-    background: white;
+    border-bottom: 1px solid black;
+    box-sizing: border-box;
+    background:white;
 }
 
 .Name {
-    color: black;
+    color: #555;
     text-align: center;
     display: flex;
     justify-content: center;

@@ -42,7 +42,7 @@ const Calendar = props => {
                     day={num}
                     machineState={data[1] ? data[1][num-1] : null}
                     color={"None"}>
-                    {data[0] ? data[0][num-1].Amount : 0}
+                    {data[0] ? data[0][num-1].Amount : null}
                 </Day>
             ))}
             </div>
