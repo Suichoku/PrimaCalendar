@@ -6,8 +6,6 @@ import moment from 'moment'
 
 const Calendar = props => {
 
-    console.log(props.failureData);
-
     // set moment date to currently selected month
     const m = moment(`${props.year}-${props.month}`, "YYYY-MM")
     // calculate how many filler days are needed
