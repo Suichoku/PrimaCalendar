@@ -17,11 +17,17 @@ const Calendar = props => {
     const days = Array(daysInMonth).fill().map( (_, i) => i + 1)
 
     const dataLength = props.failureData && props.failureData.length;
+    const timeLength = props.machineTime && props.machineTime.length;
 
-    const data = days.length === dataLength ?
+    const data = Array(2);
+
+    data[0] = days.length === dataLength ?
         props.failureData :
         null;
-    // props.failureData[num-1].Amount
+
+    data[1] = days.length === timeLength ?
+        props.machineTime :
+        null;
 
     return (
         <div className={classes.Container}>
@@ -33,8 +39,9 @@ const Calendar = props => {
             {days.map( num => (
                 <Day 
                     key={num}
+                    machineState={data[1] ? data[1][num-1] : null}
                     color={"None"}>
-                    {data ? data[num-1].Amount : num}
+                    {data[0] ? data[0][num-1].Amount : 0}
                 </Day>
             ))}
             </div>

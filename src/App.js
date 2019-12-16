@@ -9,7 +9,7 @@ import Header from './components/Header/Header';
 class App extends Component {
 
   state = {
-    month: 5, // currently selected month
+    month: 12, // currently selected month
     year: 2019, // currently selected year
     failureData: null, // Full failure count information
     machineTime: null, // Full machine state information
@@ -27,9 +27,7 @@ class App extends Component {
     fetch("./data/machinetime.json")
       .then(res => res.json())
       .then(data => this.setState( {machineTime: data}, () => {
-        this.setState( {monthMachineTime: this.filterByMonth(this.state.machineTime)}, () => {
-          console.log(this.state.monthMachineTime);
-        } );
+        this.setState( {monthMachineTime: this.filterByMonth(this.state.machineTime)} );
       }));
   }
 
@@ -63,8 +61,9 @@ class App extends Component {
       }
     }
     this.setState( {month, year}, () => { // updata month and year
-      const monthFailureData = this.filterByMonth(this.state.failureData); // filter data based on new date
-      this.setState( {monthFailureData} )
+      const monthFailureData = this.filterByMonth(this.state.failureData); // filter failure count based on new date
+      const monthMachineTime = this.filterByMonth(this.state.machineTime); // filter machineTime based on new date
+      this.setState( {monthFailureData, monthMachineTime} )
     });
   }
 
@@ -82,7 +81,8 @@ class App extends Component {
         <Calendar
           year={this.state.year}
           month={this.state.month}
-          failureData={this.state.monthFailureData} />
+          failureData={this.state.monthFailureData}
+          machineTime={this.state.monthMachineTime} />
       </div>
     )
   }

@@ -15,6 +15,12 @@ for (var m = moment(start); m.diff(end, 'days') <= 0; m.add(1, 'days')) {
     for(let i=0; i < seconds; i+=1600) {
         categories[Math.floor(Math.random() * 3)] += 1600;
     }
+
+    // move data around to ease amount of failures and idle
+    categories[2] += 0.7 * categories[0] + 0.5 * categories[1];
+    categories[0] *= 0.3;
+    categories[1] *= 0.5;
+
     // create formated string from seconds
     const timeString = time => {
         let seconds = time % 60;
