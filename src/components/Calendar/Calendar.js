@@ -1,6 +1,6 @@
 import React from 'react'
 import classes from './Calendar.module.css'
-import Day from '../../components/Day/Day'
+import Day from '../Day/Day'
 
 import moment from 'moment'
 
