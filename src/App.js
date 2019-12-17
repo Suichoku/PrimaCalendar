@@ -8,13 +8,21 @@ import Header from './components/Header/Header';
 
 class App extends Component {
 
-  state = {
-    month: 12, // currently selected month
-    year: 2019, // currently selected year
-    failureData: null, // Full failure count information
-    machineTime: null, // Full machine state information
-    monthFailureData: null, // Filtered failure count for month
-    monthMachineTime: null // Filtered machine state for month
+  
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      month: 12, // currently selected month
+      year: 2019, // currently selected year
+      failureData: null, // Full failure count information
+      machineTime: null, // Full machine state information
+      monthFailureData: null, // Filtered failure count for month
+      monthMachineTime: null, // Filtered machine state for month
+      clickStates: null
+    }
+
+    this.state.clickStates = this.flushClicks();
   }
 
   componentDidMount() {
@@ -42,6 +50,11 @@ class App extends Component {
     })
   }
 
+  flushClicks = () => {
+    const date = moment(`${this.state.year}-${this.state.month}`, "YYYY-MM");
+    return Array(date.daysInMonth()).fill().map( () => false);
+  }
+
   // Handles changing data on month change
   handleMonthChange = event => {
     let { month, year } = this.state;
@@ -63,8 +76,17 @@ class App extends Component {
     this.setState( {month, year}, () => { // updata month and year
       const monthFailureData = this.filterByMonth(this.state.failureData); // filter failure count based on new date
       const monthMachineTime = this.filterByMonth(this.state.machineTime); // filter machineTime based on new date
-      this.setState( {monthFailureData, monthMachineTime} )
+      const clickStates = this.flushClicks(); // reset all clicked dates
+      this.setState( {monthFailureData, monthMachineTime, clickStates} );
     });
+  }
+
+  handleDayClick = dayNum => {
+    this.setState(prev => {
+      const clickStates = [...prev.clickStates];
+      clickStates[dayNum] = !clickStates[dayNum];
+      return {clickStates}
+    })
   }
 
   render() {
@@ -82,7 +104,9 @@ class App extends Component {
           year={this.state.year}
           month={this.state.month}
           failureData={this.state.monthFailureData}
-          machineTime={this.state.monthMachineTime} />
+          machineTime={this.state.monthMachineTime}
+          clickStates={this.state.clickStates}
+          dateClicked={this.handleDayClick} />
       </div>
     )
   }
