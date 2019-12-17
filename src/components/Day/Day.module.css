@@ -12,21 +12,17 @@
 }
 
 .Day:hover {
-    color: #fff;
+    color: whitesmoke;
 }
 
 .Alt {
-    margin: 0;
-    font-size: 0.8em;
+    font-size: 0.9em;
     grid-template-rows: 1fr 1fr 1fr;
-    grid-template-columns: 2fr 3fr;
+    grid-template-columns: 3fr 4fr;
     align-items: stretch;
     justify-items: stretch;
     text-align: left;
-}
-
-.Alt:hover {
-    color: #ddd;
+    text-overflow: ellipsis;
 }
 
 .Empty {
@@ -76,12 +72,15 @@
 }
 
 .Block, .BlockTitle {
-    border-bottom: 3px solid #333;
-    padding-left: 4px;
-    padding-top: 6px;
+    border-bottom: 2px solid #333;
     box-sizing: border-box;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding-left: 4px;
 }
 
 .BlockTitle {
-    border-right: 1px solid #333;
+    font-weight: bold;
+    color: rgba(20,20,20,0.5);
 }

@@ -38,8 +38,9 @@ const Calendar = props => {
         <div className={classes.Container}>
             <div className={classes.Grid}>
             {fillerDays.map( num => (
-                <Day key={"filler" + num}
-                     color={"Empty"}></Day>
+                <Day 
+                    key={"filler" + num}
+                    color={"Empty"} />
             ))}
             {days.map( num => (
                 <Day 

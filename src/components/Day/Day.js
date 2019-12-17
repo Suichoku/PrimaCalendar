@@ -32,11 +32,11 @@ const Day = props => {
     // render content based on if tile is clicked
     if(props.toggled && props.machineState) {
         content = [
-            <div key="1" className={classes.BlockTitle}>Failure</div>,
+            <div key="1" className={classes.BlockTitle}>Failure:</div>,
                 <div key="2" className={classes.Block}>{props.machineState.Failure}</div>,
-            <div key="3" className={classes.BlockTitle}>Idle</div>,
+            <div key="3" className={classes.BlockTitle}>Idle:</div>,
                 <div key="4" className={classes.Block}>{props.machineState.Idle}</div>,
-            <div key="5" className={classes.BlockTitle}>Running</div>,
+            <div key="5" className={classes.BlockTitle}>Running:</div>,
                 <div key="6" className={classes.Block}>{props.machineState.Running}</div>,
         ];
         classNames.push(classes.Alt)
@@ -50,7 +50,10 @@ const Day = props => {
     const clickFunc = props.clicked && props.clicked.bind(this, props.day);
 
     return (
-        <div onClick={clickFunc} className={classNames.join(" ")}>
+        <div 
+            onMouseEnter={clickFunc}
+            onMouseLeave={clickFunc}
+            className={classNames.join(" ")}>
             {content}
         </div>
     )  

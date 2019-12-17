@@ -13,15 +13,16 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      month: 12, // currently selected month
-      year: 2019, // currently selected year
+      month: 12, // Currently selected month
+      year: 2019, // Currently selected year
       failureData: null, // Full failure count information
       machineTime: null, // Full machine state information
       monthFailureData: null, // Filtered failure count for month
       monthMachineTime: null, // Filtered machine state for month
-      clickStates: null
+      clickStates: null // Holds current state of all days (clicked?)
     }
 
+    // Set initial state to false to all dates
     this.state.clickStates = this.flushClicks();
   }
 
@@ -39,6 +40,7 @@ class App extends Component {
       }));
   }
 
+  // Filter data by month
   filterByMonth = data => {
     return data.filter(obj => {
       let month = obj["Date"].split(".")[1] // Get month from data
@@ -50,6 +52,7 @@ class App extends Component {
     })
   }
 
+  // Reset all date states to false
   flushClicks = () => {
     const date = moment(`${this.state.year}-${this.state.month}`, "YYYY-MM");
     return Array(date.daysInMonth()).fill().map( () => false);
@@ -81,6 +84,7 @@ class App extends Component {
     });
   }
 
+  // Update clicked state of selected tile
   handleDayClick = dayNum => {
     this.setState(prev => {
       const clickStates = [...prev.clickStates];
@@ -91,6 +95,7 @@ class App extends Component {
 
   render() {
 
+    // Get current month name ("January", ...)
     const monthName = moment().month(this.state.month-1).format("MMMM");
 
     return(
